@@ -1,5 +1,5 @@
 <script>
-  import { store } from '../store'
+  import { store, isLoading } from '../store'
   import { onMount } from 'svelte';
   import Pokemon from '../Components/pokemon/Pokemon.svelte';
 
@@ -15,7 +15,7 @@
         'name': item.name
       }
     })
-    console.log($store.name)
+    $isLoading = false;
   })
 
 </script>
@@ -31,11 +31,13 @@
 <h1>Welcome to Pokemon Search</h1>
 <a href="/search">search</a>
 <ul>
-
+  {#if $isLoading}
+  <img id = "loader" src="/gif/sasha.gif" alt = "no gif">
+  {:else}
   <div class="pokemon-container">
     {#each $store as s, i}
     <Pokemon id={s.id} imgPath={`/images/${s.id}.png`} name={s.name.toUpperCase()}/>
     {/each}
   </div>
-
+  {/if}
 </ul>

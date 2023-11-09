@@ -10,6 +10,10 @@
   .pokemon-card {
     background-color: rgba(185, 214, 228, 0.5);
     margin:10px;
+    transition: transform .2s;
+  }
+  .pokemon-card:hover {
+    transform: scale(1.5);
   }
   .pokemon-img {
     background-color: rgba(173, 212, 231, 0.5);
