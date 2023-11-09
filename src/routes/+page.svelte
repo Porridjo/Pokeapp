@@ -20,18 +20,22 @@
 
 </script>
 
+<style>
+  .pokemon-container {
+    display: flex;
+    flex-wrap: wrap
+  }
+</style>
+
 
 <h1>Welcome to Pokemon Search</h1>
 <a href="/search">search</a>
 <ul>
 
-  <table>
+  <div class="pokemon-container">
     {#each $store as s, i}
     <Pokemon id={s.id} imgPath={`/images/${s.id}.png`} name={s.name.toUpperCase()}/>
-    {#if i % 4 == 0}
-    <tr></tr>
-    {/if}
     {/each}
-  </table>
+  </div>
 
 </ul>
