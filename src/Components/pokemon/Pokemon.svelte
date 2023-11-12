@@ -21,6 +21,7 @@
   .pokemon-content {
     display:flex;
     flex-direction: column;
+    padding: 10px;
   }
 
   .pokemon-id {
@@ -36,13 +37,16 @@
     border: 1px solid;
     border-color: black;
     border-radius: 50%;
-    margin: 12px;
+    margin-top: 12px;
   }
 
   .pokemon-name {
     text-align: center;
     font-weight: bold;
+    text-wrap: nowrap;
+    overflow: hidden;
   }
+
   a {
     text-decoration: none;
   }
@@ -58,7 +62,7 @@
         {id}
       </div>
       <div class="pokemon-content">
-        <img class="pokemon-img" src={imgPath} alt="no png">
+        <img class="pokemon-img" src={imgPath} onerror="this.onerror=null; this.src='/images/0.png';" alt="no png">
         <p class="pokemon-name">{name}</p>
       </div> 
   </a> 

@@ -1,6 +1,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { pokemonStore, counterStore, isLoadedStore } from '../store';
+  import Footer from '/src/components/Footer/Footer.svelte';
 
   onMount(() => console.log("Layout mounted"))
   onDestroy(() => console.log("Layout destroyed"))
@@ -14,10 +15,10 @@
   :global(body) { 
       margin: 0; 
       padding: 0; 
-      height: 100vh;
+      min-height: 100vh;
       background-image: url('/images/background2.png');
       background-size: 100vw 100vh;
-      background-attachment: scroll;
+      background-attachment: fixed;
     }
 
   :global(h1) {
@@ -26,8 +27,10 @@
   }
 
   .container {
-    height: 100vh;
+    position: relative;
+    min-height: 100vh;
   }
+
 </style>
 
 <div class="container">
@@ -36,4 +39,5 @@
     <a href="/pokemon">Pokedex</a>
   </div>
   <slot />
+  <Footer />
 </div>

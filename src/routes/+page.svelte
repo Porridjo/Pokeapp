@@ -24,7 +24,7 @@
 <style>
 
   .home-container {
-    height: 100%;
+    min-height: 95vh;
     display: flex;
     flex-direction: column;
     align-items: center;
