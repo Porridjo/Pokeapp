@@ -24,6 +24,7 @@
       } else {
         currentPageNumberStore.set(pageNumber);
       }
+      console.log(`page number ${$currentPageNumberStore}`)
   }
 </script>
 
@@ -79,7 +80,7 @@
   <div class="search-bar-container">
     <input class="search-bar" type='text' on:input={() => setPageNumber(1)} bind:value={searchedPokemonName} placeholder="Pokemon name"/>
   </div>
-  <form class="go-to-page-form" on:submit|preventDefault={() => setPageNumber(form.pageNumber)}>
+  <form class="go-to-page-form" on:submit|preventDefault={() => setPageNumber(parseInt(form.pageNumber))}>
     <p>Go to page: </p>
     <input class="page-search-box" type="text" bind:value={form.pageNumber}>
     <input type="submit" value="Go">
