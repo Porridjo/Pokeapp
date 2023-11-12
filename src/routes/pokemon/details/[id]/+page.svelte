@@ -66,8 +66,9 @@
     font-weight: 700;
     color: white;
     margin-left: 10%;
+    margin-right: 10%;
     padding: 0 10px;
-    width: 100%;
+    width: 75%;
     height: 100px;
     border-radius: 5px;
     background: linear-gradient(135deg, #4797d8 10%, black 10%);
@@ -76,6 +77,7 @@
   .pokemon-content {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 20px
   }
 
   .pokemon-infos {
