@@ -6,9 +6,10 @@
 
   let searchedPokemonName = "";
 
-  const totalNumberOfPages = Math.ceil($pokemonStore.length / 30);
+  
 
   $: filteredPokemon = $pokemonStore.filter((pokemon) => pokemon.name.includes(searchedPokemonName.toLowerCase()))
+  $: totalNumberOfPages = Math.ceil(filteredPokemon.length / 30);
   $: highestId = $currentPageNumberStore * 30
   $: lowestId = highestId - 30
 
