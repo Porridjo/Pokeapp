@@ -2,8 +2,7 @@
   import { pokemonStore, isFirstLoadingStore, isLoadingStore, counterStore, isLoadedStore } from '../store';
   import { onMount, onDestroy } from 'svelte';
   import Loading from '/src/components/Loading/Loading.svelte';
-  import { goto } from '$app/navigation';
-
+  import { fade } from 'svelte/transition'
   console.log(`loadingstore: ${$isLoadingStore}`)
   console.log(`loadedstore: ${$isLoadedStore}`)
 
@@ -22,15 +21,59 @@
   
 </script>
 
-<div class="container">
+<style>
+
+  .home-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .pokedex {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(180, 215, 241, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .pokedex:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .pokedex > a {
+    text-decoration: none;
+  }
+
+  .pokedex > a > p {
+    color: black;
+    text-align: center;
+  }
+
+
+  .pokeball-img {
+    width: 100px;
+    height: 100px;
+  }
+
+
+</style>
+
+<div class="home-container">
   {#if $isLoadingStore}
   <Loading />
   <!-- <img id = "loader" src="/gif/sasha.gif" alt = "no gif"> -->
   {:else}
-  <div>
-    <p>Loaded</p>
+  <div in:fade={{delay: 1000}}>
     <div>
-      <img src="" alt="">
+      A pokedex made with Svelte
+    </div>
+    <div class="pokedex">
+      <a href="/pokemon">
+        <img class="pokeball-img" src="/images/pokeball.png" alt="">
+        <p>Pokedex</p>
+      </a>
     </div>
   </div>
   {/if}

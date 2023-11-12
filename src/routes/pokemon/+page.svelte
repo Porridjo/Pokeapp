@@ -8,17 +8,17 @@
 
   
 
-  $: filteredPokemon = $pokemonStore.filter((pokemon) => pokemon.name.includes(searchedPokemonName.toLowerCase()))
-  $: totalPokemon = filteredPokemon.length
+  $: filteredPokemon = $pokemonStore.filter((pokemon) => pokemon.name.includes(searchedPokemonName.toLowerCase()));
+  $: totalPokemon = filteredPokemon.length;
   $: totalNumberOfPages = Math.ceil(filteredPokemon.length / 30);
-  $: highestId = $currentPageNumberStore * 30
-  $: lowestId = highestId - 30
+  $: highestId = $currentPageNumberStore * 30;
+  $: lowestId = highestId - 30;
 
   const setPageNumber = (pageNumber) => {
       if (pageNumber < 1) {
         currentPageNumberStore.set(1);
       } else if (pageNumber > totalNumberOfPages) {
-        currentPageNumberStore.set(totalNumberOfPages)
+        currentPageNumberStore.set(totalNumberOfPages);
       } else {
         currentPageNumberStore.set(pageNumber);
       }
@@ -27,14 +27,14 @@
 
 <style>
 
-  .container {
+  .pokemon-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
   }
 
-  .container > div {
+  .pokemon-page-container > div {
     margin-bottom: 10px;
   }
 
@@ -49,13 +49,16 @@
     border-radius:4px;
   }
 
+  .page-navigation-buttons {
+    margin-top: 50px;
+  }
   
 
  
 </style>
 
 
-<div class="container">
+<div class="pokemon-page-container">
   <div>
     <h1>{totalPokemon} pokemons found</h1>
   </div>
@@ -71,7 +74,7 @@
     {/each}
   </div>
     
-  <div>
+  <div class="page-navigation-buttons">
     <button on:click={() => setPageNumber($currentPageNumberStore - 1)}>Previous</button>
     <button on:click={() => setPageNumber($currentPageNumberStore + 1)} >Next</button>
   </div>

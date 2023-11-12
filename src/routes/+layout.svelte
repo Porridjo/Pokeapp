@@ -24,11 +24,16 @@
     margin: 0;
     padding: 0;
   }
+
+  .container {
+    height: 100vh;
+  }
 </style>
 
-<div>
-  <a href="/">Home</a>
-  <a href="/pokemon">Pokedex</a>
+<div class="container">
+  <div>
+    <a href="/">Home</a>
+    <a href="/pokemon">Pokedex</a>
+  </div>
+  <slot />
 </div>
-
-<slot />
