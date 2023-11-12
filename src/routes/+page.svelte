@@ -1,43 +1,59 @@
 <script>
-  import { store, isLoading } from '../store'
-  import { onMount } from 'svelte';
-  import Pokemon from '../Components/pokemon/Pokemon.svelte';
+  import { pokemonStore, isFirstLoadingStore, isLoadingStore, counterStore, isLoadedStore } from '../store';
+  import { onMount, onDestroy } from 'svelte';
+  import Loading from '/src/components/Loading/Loading.svelte';
+  import { goto } from '$app/navigation';
 
-  onMount(async () => {
-    let id = 0;
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1017");
-    const data = await res.json();
+  console.log(`loadingstore: ${$isLoadingStore}`)
+  console.log(`loadedstore: ${$isLoadedStore}`)
 
-    $store = data.results.map((item) => {
-      id += 1;
-      return {
-        'id': id,
-        'name': item.name
-      }
-    })
-    $isLoading = false;
-  })
+  onMount(() => console.log("I'm mounted"))
 
+  $: $isLoadingStore = ($counterStore <= 1);
+  
+  if ($isLoadingStore) {
+    const interval = setInterval(() => $counterStore += 0.5, 500);
+    onDestroy(() => 
+    {
+      clearInterval(interval)
+    });
+  }
+
+  
 </script>
 
 <style>
-  .pokemon-container {
-    display: flex;
-    flex-wrap: wrap
+  :global(body) { 
+      margin: 0; 
+      padding: 0; 
+    }
+
+  :global(h1) {
+    margin: 0;
+    padding: 0;
+  }
+
+  :global(.container){
+    height: 100vh;
+    background-image: url('/images/background2.png');
+    background-size: 100vw 100vh;
+
   }
 </style>
 
+<div class="container">
 
-<h1>Welcome to Pokemon Search</h1>
-<a href="/search">search</a>
-<ul>
-  {#if $isLoading}
-  <img id = "loader" src="/gif/sasha.gif" alt = "no gif">
-  {:else}
-  <div class="pokemon-container">
-    {#each $store as s, i}
-    <Pokemon id={s.id} imgPath={`/images/${s.id}.png`} name={s.name.toUpperCase()}/>
-    {/each}
-  </div>
-  {/if}
-</ul>
+  <h1>Welcome to Pokemon Search</h1>
+  <a href="/pokemon">pokemons</a>
+  <ul>
+    {#if $isLoadingStore}
+    <Loading />
+    <!-- <img id = "loader" src="/gif/sasha.gif" alt = "no gif"> -->
+    {:else}
+    <div>
+      <p>Loaded</p>
+    </div>
+    {/if}
+  </ul>
+
+</div>
