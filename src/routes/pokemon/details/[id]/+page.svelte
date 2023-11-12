@@ -74,6 +74,18 @@
     background: linear-gradient(135deg, #4797d8 10%, black 10%);
   }
 
+  .pokemon-id {
+    flex: 0 0 5%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pokemon-name {
+    flex: 0 0 95%;
+    display: flex;
+    justify-content: center;
+  }
+
   .pokemon-content {
     display: flex;
     justify-content: space-evenly;
@@ -116,14 +128,6 @@
 
   .ability-name {
     text-transform: capitalize;
-  }
-
-  .pokemon-id {
-    margin-left: 2%;
-  }
-
-  .pokemon-name {
-    margin-left: 10%
   }
 
   .base-stats {
