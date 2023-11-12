@@ -1,20 +1,21 @@
 <script>
+    import { fade, fly } from "svelte/transition";
     export let id;
     export let imgPath;
     export let name;
 </script>
 
 <style>
-  .pokemon-container {
-    flex: 1 0 10%;
-  }
   .pokemon-card {
-    
     background-color: rgba(180, 215, 241, 0.7);
     border-radius: 10px;
     margin:10px;
     transition: transform .2s;
     position:relative;
+    width: 120px;
+    height: 170px;
+    flex-wrap: wrap;
+    flex-basis: 8%;
   }
 
   .pokemon-content {
@@ -35,7 +36,7 @@
     border: 1px solid;
     border-color: black;
     border-radius: 50%;
-    margin: 10px;
+    margin: 12px;
   }
 
   .pokemon-name {
@@ -51,18 +52,16 @@
   }
 </style>
 
-  
-  <a class="pokemon-container" href={`/pokemon/details/${id}`}>
-    <div  class="pokemon-card">
+<div class="pokemon-card" in:fade>
+  <a href={`/pokemon/details/${id}`}>  
       <div class="pokemon-id">
         {id}
       </div>
       <div class="pokemon-content">
         <img class="pokemon-img" src={imgPath} alt="no png">
         <p class="pokemon-name">{name}</p>
-      </div>
-    </div>
+      </div> 
   </a> 
-
+</div>
 
 

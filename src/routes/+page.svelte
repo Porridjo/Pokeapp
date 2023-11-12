@@ -22,25 +22,6 @@
   
 </script>
 
-<style>
-  :global(body) { 
-      margin: 0; 
-      padding: 0; 
-    }
-
-  :global(h1) {
-    margin: 0;
-    padding: 0;
-  }
-
-  :global(.container){
-    height: 100vh;
-    background-image: url('/images/background2.png');
-    background-size: 100vw 100vh;
-
-  }
-</style>
-
 <div class="container">
 
   <h1>Welcome to Pokemon Search</h1>

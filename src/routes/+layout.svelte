@@ -8,8 +8,23 @@
   export let data;
   $pokemonStore = data.pokemons
   $isLoadedStore = true
-
 </script>
+
+<style>
+  :global(body) { 
+      margin: 0; 
+      padding: 0; 
+      height: 100vh;
+      background-image: url('/images/background2.png');
+      background-size: 100vw 100vh;
+      background-attachment: scroll;
+    }
+
+  :global(h1) {
+    margin: 0;
+    padding: 0;
+  }
+</style>
 
 
 <slot />
