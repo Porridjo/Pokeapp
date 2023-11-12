@@ -23,18 +23,17 @@
 </script>
 
 <div class="container">
-
-  <h1>Welcome to Pokemon Search</h1>
-  <a href="/pokemon">pokemons</a>
-  <ul>
-    {#if $isLoadingStore}
-    <Loading />
-    <!-- <img id = "loader" src="/gif/sasha.gif" alt = "no gif"> -->
-    {:else}
+  {#if $isLoadingStore}
+  <Loading />
+  <!-- <img id = "loader" src="/gif/sasha.gif" alt = "no gif"> -->
+  {:else}
+  <div>
+    <p>Loaded</p>
     <div>
-      <p>Loaded</p>
+      <img src="" alt="">
     </div>
-    {/if}
-  </ul>
+  </div>
+  {/if}
+
 
 </div>

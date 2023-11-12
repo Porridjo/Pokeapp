@@ -9,13 +9,14 @@
   
 
   $: filteredPokemon = $pokemonStore.filter((pokemon) => pokemon.name.includes(searchedPokemonName.toLowerCase()))
+  $: totalPokemon = filteredPokemon.length
   $: totalNumberOfPages = Math.ceil(filteredPokemon.length / 30);
   $: highestId = $currentPageNumberStore * 30
   $: lowestId = highestId - 30
 
   const setPageNumber = (pageNumber) => {
       if (pageNumber < 1) {
-        currentPageageNumberStore.set(1);
+        currentPageNumberStore.set(1);
       } else if (pageNumber > totalNumberOfPages) {
         currentPageNumberStore.set(totalNumberOfPages)
       } else {
@@ -25,24 +26,40 @@
 </script>
 
 <style>
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .container > div {
+    margin-bottom: 10px;
+  }
+
   .pokemons-container {
     display: flex;
     flex-wrap: wrap;
-    margin: 3% 10% 10% 10%;
+    margin: 0 10% 10% 10%;
   }
   .search-bar {
     padding: 6px;
     border: 1px black solid;
     border-radius:4px;
   }
+
+  
+
  
 </style>
 
 
 <div class="container">
-  <h1>Welcome to Pokemon Search</h1>
-  <a href="/">home</a>
-  <div class="">
+  <div>
+    <h1>{totalPokemon} pokemons found</h1>
+  </div>
+  <div class="search-bar-container">
     <input class="search-bar" type='text' on:input={() => setPageNumber(1)} bind:value={searchedPokemonName} placeholder="Pokemon name"/>
   </div>
   

@@ -31,15 +31,13 @@
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    const officialArtwork = data.sprites.other["official-artwork"]
+
 </script>
 
 <style>
-  h1 {
-    text-align: center;
-  }
-
-  .col1 {
-    display: flex;
+  .pokemon-artwork-container {
+    border: 1px black solid;
   }
 
   .types {
@@ -47,60 +45,157 @@
   }
   .type {
     border: 1px black solid;
-    border-radius: 20px;
+    border-radius: 17px;
     margin: 0 10px 0 0;
     padding: 2px 10px 2px 8px;
-    color: white
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .abilities {
     display: flex;
   }
+
+  .name-container {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin-left: 10%;
+    padding: 0 10px;
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #4797d8 10%, black 10%);
+  }
+
+  .pokemon-content {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .pokemon-infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .pokedex-data {
+    background-color: rgb(223, 217, 217);
+    border-radius: 10px;
+  }
+
+  .pokedex-data > div {
+    border: 1px solid black;
+    padding: 7px;
+    display: flex;
+  }
+
+  .pokedex-data > div > div:first-child {
+    flex: 0 0 35%
+  }
+
+  .pokemon-id {
+    margin-left: 2%;
+  }
+
+  .pokemon-name {
+    margin-left: 10%
+  }
+
+  .base-stats {
+    background-color: #fff;
+  }
+  .base-stats > div {
+    display: flex;
+    border: 1px black solid;
+    justify-content: space-between;
+    padding: 5px
+  }
+
+  .stat {
+    text-transform: capitalize;
+    
+  }
 </style>
 
 
 
-<h1> {data.name.toUpperCase()}  </h1>
-<div>
-  <div class="stats">
-    {#each data.stats as stat}
-      <div class="col1">
-        <div>
-          {stat.stat.name} 
-        </div>
-        <div>
-          {stat.base_stat}
-        </div>  
-      </div>
-    {/each}
-  </div>
+<div class="name-container">
+  <p class="pokemon-id">{data.id}</p>
+  <p class="pokemon-name">{data.name.toUpperCase()}</p>
 </div>
 
-<div>
-  <div class="types">
-    Types:
-    {#each data.types as type}
-    <div class="type" style="background-color: {typeToColor(type.type.name)}">
-        {capitalizeFirstLetter(type.type.name)}
+<div class="pokemon-content">
+  <div class="pokemon-artwork-container">
+    <img class="pokemon-artwork" src={officialArtwork.front_default} alt="pokemon artwork" />
+  </div>
+
+  <div class="pokemon-infos">
+    <div class="pokedex-data">
+      <div class="types">
+        <div>
+          Types
+        </div>
+        {#each data.types as type}
+        <div class="type" style="background-color: {typeToColor(type.type.name)}">
+            {capitalizeFirstLetter(type.type.name)}
+        </div>
+        {/each}
+      </div>
+      <div>
+        <div>
+          Height
+        </div>
+        <div>
+          {data.height/10} m
+        </div>
+      </div>
+      <div>
+        <div>
+          Weight 
+        </div>
+        <div>
+          {data.weight/10} kg
+        </div>
+      </div>
+      <div>
+        <div>
+          Base Exp.
+        </div>
+        <div>
+          {data.base_experience}
+        </div>
+      </div>
+      <div class="abilities">
+        <div>
+          Abilities
+        </div>
+        <div class="abilities-content">
+          {#each data.abilities as ability}
+          <div>{capitalizeFirstLetter(ability.ability.name)} {ability.is_hidden ? '(hidden ability)' : ''}</div>
+          {/each}
+        </div>
+      </div>
     </div>
-    {/each}
-  </div>
-  <div>
-    Height: {data.height/10} m
-  </div>
-  <div>
-    Weight: {data.weight/10} kg
-  </div>
-  <div>
-    Base Exp.: {data.base_experience}
-  </div>
-  <div class="abilities">
-    Abilities: 
-    <div class="abilities-content">
-      {#each data.abilities as ability}
-      <div>{capitalizeFirstLetter(ability.ability.name)} {ability.is_hidden ? '(hidden ability)' : ''}</div>
+
+    <div class="base-stats">
+      {#each data.stats as stat}
+        <div class="stat">
+          <div>
+            {stat.stat.name} 
+          </div>
+          <div class="stat-value">
+            {stat.base_stat}
+          </div>  
+        </div>
       {/each}
     </div>
   </div>
-
+  
 </div>
+
+
+
+

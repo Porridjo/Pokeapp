@@ -26,5 +26,9 @@
   }
 </style>
 
+<div>
+  <a href="/">Home</a>
+  <a href="/pokemon">Pokedex</a>
+</div>
 
 <slot />
