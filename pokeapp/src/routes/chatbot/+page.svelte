@@ -18,6 +18,8 @@
       "writtenBy": 'user'
     }]
 
+    text=""
+
     const options = {
       method: 'POST',
       headers: {
@@ -38,7 +40,7 @@
     ]
     console.log(messages)
     isLoading = false;
-    text=""
+    
   }
 </script>
 
