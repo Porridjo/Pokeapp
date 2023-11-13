@@ -17,9 +17,7 @@
       text,
       "writtenBy": 'user'
     }]
-
-    text=""
-
+    
     const options = {
       method: 'POST',
       headers: {
@@ -29,6 +27,7 @@
         'message': text,
       })
     }
+    text=""
     const res = await fetch("http://localhost:3000", options);
     const data = await res.json();
   
