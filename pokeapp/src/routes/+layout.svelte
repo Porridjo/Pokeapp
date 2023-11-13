@@ -37,6 +37,7 @@
   <div>
     <a href="/">Home</a>
     <a href="/pokemon">Pokedex</a>
+    <a href="/chatbot">Chatbot</a>
   </div>
   <slot />
   <Footer />

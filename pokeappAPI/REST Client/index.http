@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:3000
+
+### read chat response
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "message": "Do you go to other servers"
+}
+
+### read chat response
+POST {{baseUrl}}/login
+
+
+### read chat response
+GET {{baseUrl}}/users
