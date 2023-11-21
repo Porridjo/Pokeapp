@@ -49,7 +49,7 @@
     <div class="navigation-paths">
       <a class:active={$page.url.pathname === "/"} href="/">Home</a>
       <a class:active={$page.url.pathname === "/pokemon"} href="/pokemon">Pokedex</a>
-      <a class:active={$page.url.pathname === "/chatbot"} href="/chatbot">Chatbot</a> 
+      <!-- <a class:active={$page.url.pathname === "/chatbot"} href="/chatbot">Chatbot</a>  -->
     </div>
   </nav>
 {/if}

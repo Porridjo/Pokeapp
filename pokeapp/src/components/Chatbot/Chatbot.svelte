@@ -1,30 +1,67 @@
 <script>
   import Icon from '@iconify/svelte';
+	import { afterUpdate } from 'svelte';
   export let show;
   let messages = [{
-        'text': "Salut sdfikrpgjkertoh ijktroijhoirtyjhorytjhoitjyhoit  jyhoijrthyojertojrtoh jrothjoirtjhorjthoijrthojrtoihjrotihjroith ",
+        'text': "Hello, I'm Ash Ketchum from Pallet Town. What's up?",
         'writtenBy': 'bot'
-      },
-      {
-        'text': "God I suck",
-        'writtenBy': 'user'
-      }]
+      },]
   
   let text=""
 
+  let element;
+
+  let isLoading = false;
+
+  $: messages
+  $: isLoading
+
   const sendMessage = async () => {
     if (text === "") return;
+
+    isLoading = true;
 
     messages = [...messages, {
       text,
       "writtenBy": 'user'
     }]
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'message': text,
+      })
+    }
+
+    text=""
+    const res = await fetch("http://localhost:3000", options);
+    const data = await res.json();
+  
+    messages = [...messages, 
+      {
+        'text': data.text,
+        'writtenBy': 'bot'
+      }
+    ]
+    console.log(messages)
+    isLoading = false;
+    
   }
 
-  const handleClick = (e) => {
-    sendMessage(text)
-  }
+  afterUpdate(() => {
+		if(messages) scrollToBottom(element);
+  });
+
   
+  const scrollToBottom = async (node) => {
+    if (node) {
+      node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
+    }
+  }; 
+
 
 </script>
 
@@ -61,19 +98,24 @@
     height: 500px;
     overflow-y: auto;
     padding: 10px;
+   
   }
 
   .chat {
     display: flex;
+    align-items: center;
+    
   }
 
   .bot-response {
     margin-bottom: 10px;
+    
   }
 
   .bot-response p {
     background: #f2f2f2;
     color: black;
+    
   }
 
   .user-response {
@@ -87,6 +129,7 @@
     border-radius: 10px;
     color: white;
     padding: 10px;
+    max-width: 75%;
   }
 
   .bot-pfp {
@@ -95,7 +138,7 @@
     object-fit: contain;
     width: 30px;
     height: 30px;
-    margin-right:10px;
+    margin-right:5px;
   }
 
   .user-input {
@@ -127,6 +170,33 @@
     padding: 5px 10px;
   }
 
+  .loading span {
+    width: 15px;
+    height: 15px;
+    margin: 0 2px;
+    background-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    animation-name: dots;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out
+  }
+
+  .loading span:nth-child(2) {
+    animation-delay: 0.4s
+  }
+  .loading span:nth-child(3) {
+    animation-delay: 0.8s
+  }
+
+  @keyframes dots {
+    50% {
+      opacity: 0;
+      transform: scale(0.7) translateY(10px);
+    }
+  }
+
 </style>
 
 
@@ -135,7 +205,7 @@
   <div class="chatbot-header">
     <h2>Ash Ketchum</h2>
   </div>
-  <div class="chatbox">
+  <div class="chatbox" bind:this={element}>
     {#each messages as message}
     {#if message.writtenBy === 'bot'}
     <div class="chat bot-response">   
@@ -148,9 +218,17 @@
     </div>
     {/if}
     {/each}
+    {#if isLoading}
+    <div class="loading">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    {/if}
+    <div id="anchor"></div>
   </div>
   <form class="user-input" on:submit|preventDefault={sendMessage}>
-    <textarea placeholder="Enter a message..." bind:value={text} cols="30" rows="3"></textarea>
+    <textarea placeholder="Enter a message..." bind:value={text} cols="30" rows="3" required></textarea>
     <button class="send-btn">
       <Icon icon="tabler:send" height="24px"/>
     </button>
