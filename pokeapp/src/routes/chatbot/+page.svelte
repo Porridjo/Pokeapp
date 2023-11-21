@@ -1,4 +1,6 @@
 <script>
+  import Icon from '@iconify/svelte';
+
   let messages = []
 
   let text=""
@@ -159,5 +161,6 @@
   <form on:submit|preventDefault={sendMessage}>
     <input type="text" bind:value={text}>
     <button>Send</button>
+    <Icon icon="tabler:send" />
   </form>
 </div>

@@ -3,6 +3,9 @@
   import { pokemonStore, counterStore, isLoadedStore } from '../store';
   import Footer from '/src/components/Footer/Footer.svelte';
 	import Sidebar from '/src/components/Sidebar/Sidebar.svelte';
+	import Chatbot from '/src/components/Chatbot/Chatbot.svelte';
+  import Icon from '@iconify/svelte';
+  
 
   onMount(() => console.log("Layout mounted"))
   onDestroy(() => console.log("Layout destroyed"))
@@ -12,6 +15,8 @@
   $isLoadedStore = true
 
   let showSidebar = false;
+
+  let showChatbot = false;
 </script>
 
 <style>
@@ -34,18 +39,42 @@
     position: relative;
     min-height: 100vh;
     caret-color: transparent;
+    
+  }
+
+  @media (max-width: 1113px) {
+    .container {
+      margin-bottom: 60px;
+    }
   }
 
   .toggle-sidebar-btn {
     position: relative;
+    left: 10px;
+    top: 10px;
     z-index: 10;
+  }
+
+  .toggle-chatbot-btn {
+    position: fixed;
+    bottom: 5px;
+    right: 10px;
+    z-index: 4;
   }
 
 </style>
 
+
 <div class="container">
-  <button class="toggle-sidebar-btn" on:click={() => showSidebar = !showSidebar}>{showSidebar ? "Hide" : "Show" } sidebar</button>
+  <button class="toggle-sidebar-btn" on:click={() => showSidebar = !showSidebar}>
+    <Icon icon="ion:menu" height="24px" />
+  </button>
   <Sidebar bind:show={showSidebar}/>
   <slot />
+  
 </div>
+<button class="toggle-chatbot-btn" on:click={() => showChatbot = !showChatbot}>
+  <Icon icon="tabler:message" height="24px" />
+</button>
+<Chatbot bind:show={showChatbot} />
 <Footer />

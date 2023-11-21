@@ -1,5 +1,6 @@
 <script>
   import { fly } from "svelte/transition";
+  import { page } from "$app/stores";
   export let show;
 </script>
 
@@ -20,6 +21,7 @@
     color: black;
     font-size: larger;
     margin-bottom: 5px;
+    padding: 5px;
   }
 
   a:hover {
@@ -30,8 +32,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 60px;
   }
+
+  .navigation-paths a.active {
+    border: 1px black solid;
+    border-radius: 5px;
+  }
+
 </style>
 
 
@@ -39,9 +47,9 @@
   <nav transition:fly={{x:-250}}>
 
     <div class="navigation-paths">
-      <a href="/">Home</a>
-      <a href="/pokemon">Pokedex</a>
-      <a href="/chatbot">Chatbot</a> 
+      <a class:active={$page.url.pathname === "/"} href="/">Home</a>
+      <a class:active={$page.url.pathname === "/pokemon"} href="/pokemon">Pokedex</a>
+      <a class:active={$page.url.pathname === "/chatbot"} href="/chatbot">Chatbot</a> 
     </div>
   </nav>
 {/if}
