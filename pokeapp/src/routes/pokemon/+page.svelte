@@ -54,9 +54,29 @@
     border-radius:4px;
   }
 
-  .page-navigation-buttons {
-    margin-top: 50px;
+  .page-navigation-elements {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
+
+  .page-navigation-elements > *{
+    margin-right: 50px;
+    align-self: center;
+  }
+
+  .nav-btn {
+    width: 80px;
+    height: 35px;
+    border: 1px black solid;
+    border-radius: 5px;
+  }
+
+  .nav-btn:active {
+  background-color: #7cbadf;
+  color: white;
+  transform: translateY(3px);
+}
   
   .go-to-page-form {
     display: flex;
@@ -82,11 +102,16 @@
   <div class="search-bar-container">
     <input class="search-bar" type='text' on:input={() => setPageNumber(1)} bind:value={searchedPokemonName} placeholder="Search a pokemon"/>
   </div>
-  <form class="go-to-page-form" on:submit|preventDefault={() => setPageNumber(parseInt(form.pageNumber))}>
-    <p>Go to page: </p>
-    <input class="page-search-box" type="text" bind:value={form.pageNumber} >
-    <input type="submit" value="Go">
-  </form>
+  <div class="page-navigation-elements">
+    <button class="nav-btn" on:click={() => setPageNumber($currentPageNumberStore - 1)}>Previous</button>
+    <form class="go-to-page-form" on:submit|preventDefault={() => setPageNumber(parseInt(form.pageNumber))}>
+      <p>Go to page: </p>
+      <input class="page-search-box" type="text" bind:value={form.pageNumber} >
+      <input type="submit" value="Go">
+    </form>
+    <button class="nav-btn" on:click={() => setPageNumber($currentPageNumberStore + 1)} >Next</button>
+  </div>
+  
   
   <div class="pokemons-container" in:fade>
     {#each filteredPokemon as pokemon, i}
@@ -94,11 +119,6 @@
       <Pokemon id={pokemon.id} imgPath={`/images/${pokemon.id}.png`} name={pokemon.name.toUpperCase()}/>
       {/if}
     {/each}
-  </div>
-    
-  <div class="page-navigation-buttons">
-    <button on:click={() => setPageNumber($currentPageNumberStore - 1)}>Previous</button>
-    <button on:click={() => setPageNumber($currentPageNumberStore + 1)} >Next</button>
   </div>
 </div>
 
