@@ -2,6 +2,7 @@
   import { pokemonStore, counterStore, currentPageNumberStore } from '/src/store'
   import Pokemon from '/src/components/Pokemon/Pokemon.svelte';
   import { fade, fly } from 'svelte/transition'
+  
   console.log($counterStore)
 
   let searchedPokemonName = "";
@@ -15,6 +16,7 @@
   $: totalNumberOfPages = Math.ceil(filteredPokemon.length / 30);
   $: highestId = $currentPageNumberStore * 30;
   $: lowestId = highestId - 30;
+  $: form.pageNumber = $currentPageNumberStore
 
   const setPageNumber = (pageNumber) => {
       if (pageNumber < 1) {
@@ -78,11 +80,11 @@
     <h1>{totalPokemon} pokemons found</h1>
   </div>
   <div class="search-bar-container">
-    <input class="search-bar" type='text' on:input={() => setPageNumber(1)} bind:value={searchedPokemonName} placeholder="Pokemon name"/>
+    <input class="search-bar" type='text' on:input={() => setPageNumber(1)} bind:value={searchedPokemonName} placeholder="Search a pokemon"/>
   </div>
   <form class="go-to-page-form" on:submit|preventDefault={() => setPageNumber(parseInt(form.pageNumber))}>
     <p>Go to page: </p>
-    <input class="page-search-box" type="text" bind:value={form.pageNumber}>
+    <input class="page-search-box" type="text" bind:value={form.pageNumber} >
     <input type="submit" value="Go">
   </form>
   

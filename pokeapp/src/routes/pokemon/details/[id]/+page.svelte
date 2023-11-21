@@ -1,8 +1,11 @@
 <script>
 	import { fade, fly } from 'svelte/transition';
+	import ProgressBar from '../../../../components/ProgressBar/ProgressBar.svelte';
+ 
 
     export let data;
     console.log(data);
+
     $: {data}
 
     // Give hexa color from type name
@@ -30,13 +33,17 @@
 
     const officialArtwork = data.sprites.other["official-artwork"]
 
+    
+
 </script>
 
 <style>
-  .pokemon-artwork-container {
-    border: 1px black solid;
+  .pokemon-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
   }
-
   .types {
     display: flex;
   }
@@ -65,12 +72,10 @@
     font-size: 24px;
     font-weight: 700;
     color: white;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 0 10px;
     width: 75%;
     height: 100px;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background: linear-gradient(135deg, #4797d8 10%, black 10%);
   }
 
@@ -89,14 +94,36 @@
   .pokemon-content {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 20px
+    background: rgba(40, 98, 184, 0.3);
+    width: 75%;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .pokemon-artwork-container {
+    border: 10px rgb(110, 110, 226) solid;
+    border-radius: 50%;
+    flex: 0 1 30%;
   }
 
   .pokemon-infos {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 350px;
+    flex: 0 1 40%;
+  }
+
+  @media (max-width: 1113px) {
+    .pokemon-infos {
+      margin-top: 20px;
+      flex: 0 1 70%;
+    }
+    .pokedex-data {
+      margin-bottom: 20px;
+    }
   }
 
   .pokedex-data {
@@ -109,6 +136,7 @@
     border: 1px solid black;
     padding: 7px;
     display: flex;
+    align-items: center;
   }
 
   .pokedex-data > :first-child {
@@ -138,7 +166,7 @@
     display: flex;
     border: 1px black solid;
     justify-content: space-between;
-    padding: 5px
+    padding: 7px;
   }
 
   .base-stats > :first-child {
@@ -151,12 +179,19 @@
   }
 
   .stat {
+    display: flex;
     text-transform: capitalize;
-    
+  }
+
+  .stat > :nth-child(1) {
+    flex: 0 0 25%;
+  }
+  .stat > :nth-child(2) {
+    flex: 0 0 75%;
   }
 </style>
 
-<div >
+<div class="pokemon-page-container">
   <div class="name-container" in:fly={{delay:200, duration:800, y:-200}}>
     <p class="pokemon-id">{data.id}</p>
     <p class="pokemon-name">{data.name.toUpperCase()}</p>
@@ -216,16 +251,24 @@
       </div>
   
       <div class="base-stats">
+        
         {#each data.stats as stat}
           <div class="stat">
-            <div>
+            <!-- <div>
               {stat.stat.name} 
             </div>
             <div class="stat-value">
               {stat.base_stat}
-            </div>  
+            </div>   -->
+            <div>
+              {stat.stat.name} 
+            </div>
+            <div>
+              <ProgressBar statName={stat.stat.name} statValue={stat.base_stat}/>
+            </div>
           </div>
         {/each}
+        
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <script>
-  let messages = [{text:'salut', writtenBy:'user'},{text:"sdfgjeoitkhjkroityjhoirtjhoirtjhoirjthoijrotihbjroitjhoirtjhoirjthopijrthobjrotihjortjhoirjhoirjthoijrtohijroi", writtenBy:'bot'}]
+  let messages = []
 
   let text=""
 
@@ -57,12 +57,14 @@
     background-color: white;
     border-radius: 20px;
     border: 2px black solid;
+    overflow-y: scroll;
   }
 
   .inner {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    
   }
 
   .user-message {
@@ -80,7 +82,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
   .bot-pfp {
     border: 1px solid black;

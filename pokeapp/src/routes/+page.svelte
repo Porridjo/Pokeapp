@@ -30,12 +30,24 @@
     align-items: center;
     justify-content: center;
   }
+
+  .home-elements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    margin-bottom: 50px;
+  }
+
   .pokedex {
     display: flex;
     justify-content: center;
     background-color: rgba(180, 215, 241, 0.5);
     border-radius: 10px;
     padding: 10px;
+    width: 200px;
   }
 
   .pokedex:hover {
@@ -58,6 +70,7 @@
   }
 
 
+
 </style>
 
 <div class="home-container">
@@ -65,10 +78,8 @@
   <Loading />
   <!-- <img id = "loader" src="/gif/sasha.gif" alt = "no gif"> -->
   {:else}
-  <div in:fade={{delay: 1000}}>
-    <div>
-      A pokedex made with Svelte
-    </div>
+  <div class="home-elements" in:fade={{delay: 1000}}>
+    <h1>A pokedex made with Svelte</h1>   
     <div class="pokedex">
       <a href="/pokemon">
         <img class="pokeball-img" src="/images/pokeball.png" alt="">

@@ -7,8 +7,9 @@
     height: 40px;
     width: 100%;
     color: white;
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    z-index: 3;
   }
 </style>
 <div class="footer">

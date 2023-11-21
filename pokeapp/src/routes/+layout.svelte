@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import { pokemonStore, counterStore, isLoadedStore } from '../store';
   import Footer from '/src/components/Footer/Footer.svelte';
+	import Sidebar from '/src/components/Sidebar/Sidebar.svelte';
 
   onMount(() => console.log("Layout mounted"))
   onDestroy(() => console.log("Layout destroyed"))
@@ -9,6 +10,8 @@
   export let data;
   $pokemonStore = data.pokemons
   $isLoadedStore = true
+
+  let showSidebar = false;
 </script>
 
 <style>
@@ -19,6 +22,7 @@
       background-image: url('/images/background2.png');
       background-size: 100vw 100vh;
       background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
     }
 
   :global(h1) {
@@ -29,16 +33,19 @@
   .container {
     position: relative;
     min-height: 100vh;
+    caret-color: transparent;
+  }
+
+  .toggle-sidebar-btn {
+    position: relative;
+    z-index: 10;
   }
 
 </style>
 
 <div class="container">
-  <div>
-    <a href="/">Home</a>
-    <a href="/pokemon">Pokedex</a>
-    <a href="/chatbot">Chatbot</a>
-  </div>
+  <button class="toggle-sidebar-btn" on:click={() => showSidebar = !showSidebar}>{showSidebar ? "Hide" : "Show" } sidebar</button>
+  <Sidebar bind:show={showSidebar}/>
   <slot />
-  <Footer />
 </div>
+<Footer />
