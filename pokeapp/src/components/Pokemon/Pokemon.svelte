@@ -1,7 +1,7 @@
 <script>
     import { fade, fly } from "svelte/transition";
     import Icon from '@iconify/svelte';
-    import { pokemonStore, myPokemonsStore } from "../../store";
+    import { pokemonStore, myPokemonCountStore } from "../../store";
 
     export let id;
     export let imgPath;
@@ -9,6 +9,7 @@
     export let caught;
 
     const addPokemon = () => {
+      caught ? myPokemonCountStore.set($myPokemonCountStore - 1) : myPokemonCountStore.set($myPokemonCountStore + 1)
       pokemonStore.set(
         $pokemonStore.map(pokemon => {
           if (pokemon.id === id) {
@@ -17,7 +18,8 @@
           return pokemon
         })
         )
-      console.log($pokemonStore)
+      localStorage.setItem("pokemons", JSON.stringify($pokemonStore))
+      localStorage.setItem("pokemon-count", JSON.stringify($myPokemonCountStore))
     }
 </script>
 
@@ -55,7 +57,7 @@
   }
 
   .pokeball-icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 
 

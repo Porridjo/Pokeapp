@@ -1,13 +1,21 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
-  import { pokemonStore, counterStore, isLoadedStore } from '../store';
+  import { pokemonStore, counterStore, isLoadedStore, myPokemonCountStore } from '../store';
   import Footer from '/src/components/Footer/Footer.svelte';
 	import Sidebar from '/src/components/Sidebar/Sidebar.svelte';
 	import Chatbot from '/src/components/Chatbot/Chatbot.svelte';
   import Icon from '@iconify/svelte';
   
 
-  onMount(() => console.log("Layout mounted"))
+  onMount(() => {
+    console.log("Layout mounted")
+    const pokemons = JSON.parse(localStorage?.getItem('pokemons'));
+    const pokemonCount = JSON.parse(localStorage?.getItem('pokemon-count'));
+    if (pokemons && pokemonCount) {
+      pokemonStore.set(pokemons)
+      myPokemonCountStore.set(pokemonCount)
+    }
+  })
   onDestroy(() => console.log("Layout destroyed"))
   
   export let data;

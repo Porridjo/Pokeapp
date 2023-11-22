@@ -1,6 +1,8 @@
 <script>
   import { fly } from "svelte/transition";
   import { page } from "$app/stores";
+  import { myPokemonCountStore } from "../../store";
+
   export let show;
 </script>
 
@@ -11,7 +13,7 @@
     left: 0;
     background: rgba(94, 157, 209, 0.527);
     height: 100%;
-    width: 10rem;
+    width: 12rem;
     display: flex;
     flex-direction: column;
     z-index: 1;
@@ -49,7 +51,7 @@
     <div class="navigation-paths">
       <a class:active={$page.url.pathname === "/"} href="/">Home</a>
       <a class:active={$page.url.pathname === "/pokemon"} href="/pokemon">Pokedex</a>
-      <a class:active={$page.url.pathname === "/mypokemons"} href="/mypokemons">My pokemons</a>
+      <a class:active={$page.url.pathname === "/mypokemons"} href="/mypokemons">My pokemons ({$myPokemonCountStore})</a>
       <!-- <a class:active={$page.url.pathname === "/chatbot"} href="/chatbot">Chatbot</a>  -->
     </div>
   </nav>
