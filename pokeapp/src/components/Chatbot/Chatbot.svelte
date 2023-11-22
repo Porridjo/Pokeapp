@@ -78,13 +78,14 @@
     z-index: 4;
     background: white;
     width: 350px;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     box-shadow: 0 0 12px 0;
   
   }
 
   .chatbot-header {
     background: rgb(103, 138, 212);
+    border-radius: 8px 8px 0 0;
     display: flex;
     justify-content: center;
     padding: 10px;

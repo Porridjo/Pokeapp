@@ -125,8 +125,10 @@
 
   .pokemon-artwork-container {
     border: 10px rgb(110, 110, 226) solid;
+    height: 100%;
     border-radius: 50%;
-    flex: 0 1 30%;
+    flex: 0 0 30%;
+    align-self: center;
   }
 
   .pokemon-infos {
