@@ -7,7 +7,8 @@ export async function load({ fetch }) {
     return {
       id,
       name: pokemon.name,
-      url: pokemon.url
+      url: pokemon.url,
+      caught: false
     }
   })
   return {

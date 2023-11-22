@@ -116,7 +116,7 @@
   <div class="pokemons-container" in:fade>
     {#each filteredPokemon as pokemon, i}
       {#if i+1 <= highestId && i+1 > lowestId}
-      <Pokemon id={pokemon.id} imgPath={`/images/${pokemon.id}.png`} name={pokemon.name.toUpperCase()}/>
+      <Pokemon id={pokemon.id} imgPath={`/images/${pokemon.id}.png`} name={pokemon.name.toUpperCase()} caught={pokemon.caught}/>
       {/if}
     {/each}
   </div>
