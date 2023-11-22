@@ -1,6 +1,6 @@
 <script>
 	import { fade, fly } from 'svelte/transition';
-	import ProgressBar from '../../../../components/ProgressBar/ProgressBar.svelte';
+	import ProgressBar from '/src/components/ProgressBar/ProgressBar.svelte';
  
 
     export let data;
@@ -227,7 +227,8 @@
   
   <div class="pokemon-content">
     <div class="pokemon-artwork-container" in:fly={{delay:200, duration:1300, x:-200}}>
-      <img class="pokemon-artwork" src={officialArtwork.front_default} alt="pokemon artwork" />
+      
+      <img class="pokemon-artwork" src={officialArtwork.front_default ? officialArtwork.front_default : '/images/image_not_available.png'} alt="pokemon artwork" />
     </div>
     
     <div class="pokemon-infos" in:fly={{delay:200, duration:1500, x:200}}>
@@ -287,7 +288,7 @@
               {stat.stat.name} 
             </div>
             <div>
-              <ProgressBar statName={stat.stat.name} statValue={stat.base_stat}/>
+              <ProgressBar statName={stat.stat.name} statValue={stat.base_stat} />
             </div>
           </div>
         {/each}

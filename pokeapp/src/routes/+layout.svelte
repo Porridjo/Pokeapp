@@ -25,6 +25,7 @@
   let showSidebar = false;
 
   let showChatbot = false;
+
 </script>
 
 <style>
@@ -73,7 +74,7 @@
     border-radius: 5px;
     border: 1px solid black;
   }
-
+  
 </style>
 
 
