@@ -43,6 +43,27 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .go-back-btn {
+    padding: 8px;
+    border: 1px black solid;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .go-back-btn:active {
+    transform: translateY(3px);
+  }
+
+  .go-back-btn a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .go-back-btn a:active {
+    color: black;
+  }
+
   .types {
     display: flex;
   }
@@ -188,9 +209,14 @@
   .stat > :nth-child(2) {
     flex: 0 0 75%;
   }
+  
+
 </style>
 
 <div class="pokemon-page-container">
+  <button class="go-back-btn">
+    <a href="/pokemon">Back to the Pokedex</a>
+  </button>
   <div class="name-container" in:fly={{delay:200, duration:800, y:-200}}>
     <p class="pokemon-id">{data.id}</p>
     <p class="pokemon-name">{data.name.toUpperCase()}</p>
@@ -200,8 +226,9 @@
     <div class="pokemon-artwork-container" in:fly={{delay:200, duration:1300, x:-200}}>
       <img class="pokemon-artwork" src={officialArtwork.front_default} alt="pokemon artwork" />
     </div>
-  
+    
     <div class="pokemon-infos" in:fly={{delay:200, duration:1500, x:200}}>
+      <h2>Profile</h2>
       <div class="pokedex-data">
         <div class="types">
           <div>
@@ -248,17 +275,11 @@
           </div>
         </div>
       </div>
-  
+      
+      <h2>Base stats</h2>
       <div class="base-stats">
-        
         {#each data.stats as stat}
           <div class="stat">
-            <!-- <div>
-              {stat.stat.name} 
-            </div>
-            <div class="stat-value">
-              {stat.base_stat}
-            </div>   -->
             <div>
               {stat.stat.name} 
             </div>

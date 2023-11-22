@@ -73,10 +73,10 @@
   }
 
   .nav-btn:active {
-  background-color: #7cbadf;
-  color: white;
-  transform: translateY(3px);
-}
+    background-color: #7cbadf;
+    color: white;
+    transform: translateY(3px);
+  }
   
   .go-to-page-form {
     display: flex;
