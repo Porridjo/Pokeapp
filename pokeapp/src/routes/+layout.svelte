@@ -57,10 +57,12 @@
   }
 
   .toggle-sidebar-btn {
-    position: relative;
+    position: fixed;
     left: 10px;
     top: 10px;
     z-index: 10;
+    border-radius: 5px;
+    border: 1px solid black;
   }
 
   .toggle-chatbot-btn {
@@ -68,6 +70,8 @@
     bottom: 5px;
     right: 10px;
     z-index: 4;
+    border-radius: 5px;
+    border: 1px solid black;
   }
 
 </style>
