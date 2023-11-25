@@ -13,5 +13,5 @@
   }
 </style>
 <div class="footer">
-    Made by Duong Quoc An, Nguyen Ngoc, Nguyen Trong Kyle, Queguineur Tanguy 
+    Made by Duong Quoc An, Nguyen Ngoc, Nguyen Trong Kyle, Queguineur Tanguy, Yi Nghi Ke Man 
 </div>
