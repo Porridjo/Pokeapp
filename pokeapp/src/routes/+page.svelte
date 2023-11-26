@@ -1,5 +1,5 @@
 <script>
-  import { pokemonStore, isFirstLoadingStore, isLoadingStore, counterStore, isLoadedStore } from '../store';
+  import {isLoadingStore, counterStore, isLoadedStore } from '../store';
   import { onMount, onDestroy } from 'svelte';
   import Loading from '/src/components/Loading/Loading.svelte';
   import { fade } from 'svelte/transition'
