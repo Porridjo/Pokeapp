@@ -1,6 +1,12 @@
 # Un Pokedex en Svelte
 
-Regarder les informations sur les pokémons, enregistrer vos pokémons capturés ou parler avec le célèbre Sasha du Bourg Palette dans une messagerie !
+Notre application permet de: 
+- Regarder les informations sur les pokémons.
+- Enregistrer vos pokémons capturés. La liste est enregistré dans le localstorage.
+- Parler avec le célèbre Sasha du Bourg Palette dans une messagerie !
+
+L'application est SPA et fait du Server Side Rendering (SSR) et du Client Side Rendering (CSR).
+La première fois qu'on visite le site, le code inclus dans les tags <script> sont exécutés sur le serveur. Par contre, les prochaines visites de pages sont exécutés sur le client.
 
 ## Démarrer le projet sur votre ordinateur
 
