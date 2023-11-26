@@ -2,7 +2,7 @@
 
 Notre application permet de: 
 - Regarder les informations sur les pokémons.
-- Enregistrer vos pokémons capturés. La liste est enregistré dans le localstorage.
+- Enregistrer vos pokémons capturés en cliquant la pokeball sur le pokémon. La liste est enregistré dans le localstorage.
 - Parler avec le célèbre Sasha du Bourg Palette dans une messagerie !
 
 L'application est SPA et fait du Server Side Rendering (SSR) et du Client Side Rendering (CSR).
