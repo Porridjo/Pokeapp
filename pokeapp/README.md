@@ -24,4 +24,4 @@ npm install
 npm run dev
 ```
 
-Note: Pour profiter des fonctionnalités du chatbot, il faut démarrer l'API
+Note: Pour profiter des fonctionnalités du chatbot, il faut démarrer l'API.
