@@ -5,7 +5,7 @@ Notre application permet de:
 - Enregistrer vos pokémons capturés en cliquant la pokeball sur le pokémon. La liste est enregistré dans le localstorage.
 - Parler avec le célèbre Sasha du Bourg Palette dans une messagerie !
 
-L'application est SPA et fait du Server Side Rendering (SSR) et du Client Side Rendering (CSR).
+L'application fait du Server Side Rendering (SSR) et du Client Side Rendering (CSR).
 La première fois qu'on visite le site, le code inclus dans les tags <script> sont exécutés sur le serveur. Par contre, les prochaines visites de pages sont exécutés sur le client.
 
 ## Démarrer le projet sur votre ordinateur
