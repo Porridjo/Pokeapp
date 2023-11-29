@@ -24,7 +24,7 @@
       } else if (pageNumber > totalNumberOfPages) {
         currentPageNumberStore.set(totalNumberOfPages);
       } else {
-        currentPageNumberStore.set(pageNumber);
+        $currentPageNumberStore = pageNumber;
       }
       console.log(`page number ${$currentPageNumberStore}`)
   }
@@ -45,6 +45,7 @@
 
   .pokemons-container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     margin: 0 10% 10% 10%;
   }
@@ -57,11 +58,10 @@
   .page-navigation-elements {
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-around;
   }
 
   .page-navigation-elements > *{
-    margin-right: 50px;
     align-self: center;
   }
 
@@ -70,6 +70,7 @@
     height: 35px;
     border: 1px black solid;
     border-radius: 5px;
+    cursor: pointer;
   }
 
   .nav-btn:active {
@@ -91,6 +92,10 @@
     height: 20px;
   }
 
+  .search-page-submit-btn {
+    cursor: pointer;
+  }
+
  
 </style>
 
@@ -107,16 +112,16 @@
     <form class="go-to-page-form" on:submit|preventDefault={() => setPageNumber(parseInt(form.pageNumber))}>
       <p>Go to page: </p>
       <input class="page-search-box" type="text" bind:value={form.pageNumber} >
-      <input type="submit" value="Go">
+      <input class="search-page-submit-btn" type="submit" value="Go">
     </form>
     <button class="nav-btn" on:click={() => setPageNumber($currentPageNumberStore + 1)} >Next</button>
   </div>
   
   
-  <div class="pokemons-container" in:fade>
+  <div class="pokemons-container">
     {#each filteredPokemon as pokemon, i}
       {#if i+1 <= highestId && i+1 > lowestId}
-      <Pokemon id={pokemon.id} imgPath={`/images/${pokemon.id}.png`} name={pokemon.name.toUpperCase()} caught={pokemon.caught}/>
+      <Pokemon id={pokemon.id} imgPath={`/images/${pokemon.id}.png`} name={pokemon.name.toUpperCase()} caught={pokemon.caught} searchTerm={searchedPokemonName} order={i+1}/>
       {/if}
     {/each}
   </div>

@@ -274,7 +274,9 @@
           </div>
           <div class="abilities-content">
             {#each data.abilities as ability}
-            <div class="ability-name">{ability.ability.name} {ability.is_hidden ? '(hidden ability)' : ''}</div>
+            <div class="ability-name">
+              {ability.ability.name} {ability.is_hidden ? '(hidden ability)' : ''}
+            </div>
             {/each}
           </div>
         </div>
@@ -297,9 +299,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 
 

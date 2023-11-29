@@ -1,12 +1,14 @@
 <script>
     import { fade, fly } from "svelte/transition";
     import Icon from '@iconify/svelte';
-    import { pokemonStore, myPokemonCountStore } from "../../store";
+    import { pokemonStore, myPokemonCountStore, currentPageNumberStore } from "../../store";
 
     export let id;
     export let imgPath;
     export let name;
     export let caught;
+    export let searchTerm;
+    export let order;
 
     const addPokemon = () => {
       caught ? myPokemonCountStore.set($myPokemonCountStore - 1) : myPokemonCountStore.set($myPokemonCountStore + 1)
@@ -21,6 +23,11 @@
       localStorage.setItem("pokemons", JSON.stringify($pokemonStore))
       localStorage.setItem("pokemon-count", JSON.stringify($myPokemonCountStore))
     }
+
+    $: transitionFunction = (node) => {
+      if (searchTerm !== '') return fade(node);
+      else return fly(node, { x: 2000, duration:850, delay: 50 * (order - ($currentPageNumberStore - 1) * 30), })
+    } 
 </script>
 
 <style>
@@ -51,7 +58,7 @@
   .pokeball-icon {
     position: absolute;
     top: 3px;
-    right: 5px;
+    right: 0;
     background-color: transparent;
     border: none;
   }
@@ -88,7 +95,7 @@
   }
 </style>
 
-<div class="pokemon-card" in:fade>
+<div class="pokemon-card" in:transitionFunction>
   <a href={`/pokemon/details/${id}`}>  
       <div class="pokemon-id">
         {id}

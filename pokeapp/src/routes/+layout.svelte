@@ -1,11 +1,22 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { pokemonStore, counterStore, isLoadedStore, myPokemonCountStore } from '../store';
+  import { onNavigate } from '$app/navigation';
   import Footer from '/src/components/Footer/Footer.svelte';
 	import Sidebar from '/src/components/Sidebar/Sidebar.svelte';
 	import Chatbot from '/src/components/Chatbot/Chatbot.svelte';
   import Icon from '@iconify/svelte';
   
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 
   onMount(() => {
     console.log("Layout mounted")
@@ -64,6 +75,7 @@
     z-index: 10;
     border-radius: 5px;
     border: 1px solid black;
+    cursor: pointer;
   }
 
   .toggle-chatbot-btn {
@@ -73,6 +85,7 @@
     z-index: 4;
     border-radius: 5px;
     border: 1px solid black;
+    cursor: pointer;
   }
   
 </style>
